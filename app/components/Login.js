@@ -1,4 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
+import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Image, Text, View } from 'react-native';
@@ -9,6 +10,7 @@ import Color from '../../src/constants/colors';
 import AppBase from '../base_components/AppBase';
 import BR from '../base_components/BR';
 import IconTextInput from '../base_components/IconTextInput';
+import RoundButton from '../base_components/RoundButton';
 import TextButton from '../base_components/TextButton';
 
 class LoginComponent extends Component {
@@ -24,25 +26,25 @@ class LoginComponent extends Component {
           justifyContent: 'center',
         }}
       >
-        <View style={{flex:2, justifyContent:'center', alignItems:'center'}}>
+        <View style={{flex:3, justifyContent:'center', alignItems:'center'}}>
           <Image
             resizeMode={'cover'}
             source={Assets.Images.logoConic}
           />
         </View>
-        <View style={{flex:2}}>
+        <View style={{flex:5}}>
           <IconTextInput
             icon="user"
             placeholder="Email Address"
             colorIcon={Color.primaryColor}
+            onChangeText={debounce(onEmailChange, 500)}
           />
-          <BR />
           <IconTextInput
             icon="lock"
             placeholder="Password"
             colorIcon={Color.primaryColor}
+            onChangeText={debounce(onPasswordChange, 500)}
           />
-          <BR />
           <TextButton
             onPress={() => {
             }}
@@ -51,12 +53,18 @@ class LoginComponent extends Component {
             primary
             underlineColorAndroid="#B9B9B9"
           />
+          <RoundButton
+            title="Sign In"
+            disabled={false}
+            loading={loading}
+            onPress={onLoginSubmit}
+          />
           <BR size={20} />
         </View>
         <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end', flexDirection: 'row'}}>
-          <Text onPress={() => Actions.signupScreen()}>New to conic? </Text>
+          <Text>New to conic? </Text>
           <TextButton
-              onPress={() => Actions.test()}
+              onPress={() => Actions.signupScreen()}
               title="Sign Up"
               primary
           />
