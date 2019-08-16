@@ -15,7 +15,7 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
+      userNameOrEmailAddress: null,
       password: null,
     };
   }
@@ -27,19 +27,19 @@ class LoginScreen extends Component {
     }
   }
 
-  async componentWillReceiveProps(nextProps, nextContext) {
+  async componentWillReceiveProps(nextProps) {
     await this.handleRedirect(nextProps.loginMessage);
   }
 
 
   handleLoginSubmit = () => {
-    const { email, password } = this.state;
-    this.props.authLogin(email, password);
+    const { userNameOrEmailAddress, password } = this.state;
+    this.props.authLogin(userNameOrEmailAddress, password);
   };
 
-  handleEmailChange = (email) => {
+  handleEmailChange = (userNameOrEmailAddress) => {
     this.setState({
-      email,
+      userNameOrEmailAddress,
     });
   };
 
@@ -50,9 +50,9 @@ class LoginScreen extends Component {
   };
 
   handleRedirect = (loginMessage) => {
-    if (loginMessage && loginMessage.token) {
+    if (loginMessage && loginMessage.result.accessToken) {
       try {
-        Actions.reset('drawer');
+        Actions.listProductsScreen();
       } catch (e) {
         console.log(e);
       }
@@ -61,18 +61,18 @@ class LoginScreen extends Component {
 
   render() {
     const { loginLoading, loginMessage } = this.props;
-    if (loginMessage && loginLoading.token) {
+    if (loginMessage && loginLoading.accessToken) {
       return null;
     }
 
     let { loginError } = this.props;
 
-    const { email, password } = this.state;
+    const { userNameOrEmailAddress, password } = this.state;
 
     // eslint-disable-next-line react/prop-types
     loginError = loginError || this.props.navigation.state.params.loginError;
 
-    const disableLogin = (!email || email.length === 0 || !password || password.length === 0);
+    const disableLogin = (!userNameOrEmailAddress || userNameOrEmailAddress.length === 0 || !password || password.length === 0);
 
     return (
       <LoginComponent

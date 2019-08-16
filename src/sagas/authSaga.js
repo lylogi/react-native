@@ -1,8 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
+import Auth from '../services/login';
 
-import Auth from '../service/login';
 
 function* loginTask(action) {
   try {
@@ -11,8 +11,7 @@ function* loginTask(action) {
     });
     const { payload } = action;
 
-    const res = yield call(Auth.doLogin, payload.email, payload.password);
-
+    const res = yield call(Auth.doLogin, payload.userNameOrEmailAddress, payload.password);
     if (res.status === 200) {
       yield put({
         type: 'AUTH_LOGIN_SUCCESS',
@@ -43,7 +42,6 @@ function* registerTask(action) {
     const { payload } = action;
 
     const res = yield call(Auth.doRegister, payload.email, payload.password);
-
     if (res.status === 200) {
       yield put({
         type: 'AUTH_REGISTER_SUCCESS',

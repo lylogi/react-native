@@ -1,4 +1,4 @@
-export const API_BASE = 'http://localhost:3000';
+export const API_BASE = 'http://172.16.11.20:21021';
 
-export const LOGIN_URL = '/auth/login';
-export const REGISTER_URL = '/auth/register';
+export const LOGIN_URL = '/api/TokenAuth/Authenticate';
+export const REGISTER_URL = '/api/services/app/Account/Register';

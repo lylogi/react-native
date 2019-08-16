@@ -2,6 +2,7 @@
 import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 
+import ListProductsScreen from '../screens/ListProductsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 
@@ -20,8 +21,8 @@ const AppRouter = () => (
             hideNavBar
         />
         <Scene
-            key="test"
-            component={SignupScreen}
+            key="listProductsScreen"
+            component={ListProductsScreen}
             hideNavBar
         />
     </Scene>

@@ -1,12 +1,13 @@
 /* eslint-disable react/forbid-prop-types */
-import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Image, KeyboardAvoidingView, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Actions } from 'react-native-router-flux';
 
 import Assets from '../../src/constants/assets';
 import Color from '../../src/constants/colors';
+import Sizing from '../../src/constants/sizing';
 import AppBase from '../base_components/AppBase';
 import BR from '../base_components/BR';
 import IconTextInput from '../base_components/IconTextInput';
@@ -21,10 +22,8 @@ class LoginComponent extends Component {
 
     return (
       <AppBase>
-        <KeyboardAvoidingView style={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}>
+          <KeyboardAwareScrollView contentContainerStyle={{flexDirection: 'column',
+              justifyContent: 'center', minHeight:Sizing.DeviceHeight-60}}>
             <View style={{flex:3, justifyContent:'center', alignItems:'center'}}>
                 <Image
                 resizeMode={'cover'}
@@ -36,13 +35,13 @@ class LoginComponent extends Component {
                 icon="user"
                 placeholder="Email Address"
                 colorIcon={Color.primaryColor}
-                onChangeText={debounce(onEmailChange, 500)}
+                onChangeText={onEmailChange}
                 />
                 <IconTextInput
                 icon="lock"
                 placeholder="Password"
                 colorIcon={Color.primaryColor}
-                onChangeText={debounce(onPasswordChange, 500)}
+                onChangeText={onPasswordChange}
                 />
                 <TextButton
                 onPress={() => {
@@ -58,18 +57,17 @@ class LoginComponent extends Component {
                 loading={loading}
                 onPress={onLoginSubmit}
                 />
-                <BR size={20} />
             </View>
-            <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end', flexDirection: 'row'}}>
+            <View style={{flex:1, alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>
+                <BR/>
                 <Text>New to conic? </Text>
                 <TextButton
                     onPress={() => Actions.signupScreen()}
                     title="Sign Up"
                     primary
                 />
-                <BR />
             </View>
-        </KeyboardAvoidingView>
+          </KeyboardAwareScrollView>
       </AppBase>
     );
   }

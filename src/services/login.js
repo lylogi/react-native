@@ -1,9 +1,9 @@
-import request from './request';
 import { LOGIN_URL, REGISTER_URL } from './api_constants';
+import request from './request';
 
-function doLogin(email, password) {
+function doLogin(userNameOrEmailAddress, password) {
   const data = {
-    email,
+    userNameOrEmailAddress,
     password,
   };
   return request({ url: LOGIN_URL, method: 'POST', data });
