@@ -2,7 +2,7 @@
 import debounce from 'lodash/debounce';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Assets from '../../src/constants/assets';
@@ -20,56 +20,56 @@ class LoginComponent extends Component {
     } = this.props;
 
     return (
-      <AppBase
-        style={{
+      <AppBase>
+        <KeyboardAvoidingView style={{
           flexDirection: 'column',
           justifyContent: 'center',
-        }}
-      >
-        <View style={{flex:3, justifyContent:'center', alignItems:'center'}}>
-          <Image
-            resizeMode={'cover'}
-            source={Assets.Images.logoConic}
-          />
-        </View>
-        <View style={{flex:5}}>
-          <IconTextInput
-            icon="user"
-            placeholder="Email Address"
-            colorIcon={Color.primaryColor}
-            onChangeText={debounce(onEmailChange, 500)}
-          />
-          <IconTextInput
-            icon="lock"
-            placeholder="Password"
-            colorIcon={Color.primaryColor}
-            onChangeText={debounce(onPasswordChange, 500)}
-          />
-          <TextButton
-            onPress={() => {
-            }}
-            title="Forgot your password?"
-            style={{textAlign:'center', textDecorationLine:'underline'}}
-            primary
-            underlineColorAndroid="#B9B9B9"
-          />
-          <RoundButton
-            title="Sign In"
-            disabled={false}
-            loading={loading}
-            onPress={onLoginSubmit}
-          />
-          <BR size={20} />
-        </View>
-        <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end', flexDirection: 'row'}}>
-          <Text>New to conic? </Text>
-          <TextButton
-              onPress={() => Actions.signupScreen()}
-              title="Sign Up"
-              primary
-          />
-          <BR />
-        </View>
+        }}>
+            <View style={{flex:3, justifyContent:'center', alignItems:'center'}}>
+                <Image
+                resizeMode={'cover'}
+                source={Assets.Images.logoConic}
+                />
+            </View>
+            <View style={{flex:5}}>
+                <IconTextInput
+                icon="user"
+                placeholder="Email Address"
+                colorIcon={Color.primaryColor}
+                onChangeText={debounce(onEmailChange, 500)}
+                />
+                <IconTextInput
+                icon="lock"
+                placeholder="Password"
+                colorIcon={Color.primaryColor}
+                onChangeText={debounce(onPasswordChange, 500)}
+                />
+                <TextButton
+                onPress={() => {
+                }}
+                title="Forgot your password?"
+                style={{textAlign:'center', textDecorationLine:'underline'}}
+                primary
+                underlineColorAndroid="#B9B9B9"
+                />
+                <RoundButton
+                title="Sign In"
+                disabled={false}
+                loading={loading}
+                onPress={onLoginSubmit}
+                />
+                <BR size={20} />
+            </View>
+            <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end', flexDirection: 'row'}}>
+                <Text>New to conic? </Text>
+                <TextButton
+                    onPress={() => Actions.signupScreen()}
+                    title="Sign Up"
+                    primary
+                />
+                <BR />
+            </View>
+        </KeyboardAvoidingView>
       </AppBase>
     );
   }
