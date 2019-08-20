@@ -22,7 +22,7 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     const { loginMessage } = this.props;
-    if (loginMessage !== null && loginMessage.token && loginMessage.token.length > 10) {
+    if (loginMessage !== null && loginMessage.result.accessToken && loginMessage.result.accessToken.length > 10) {
       Actions.reset('drawer');
     }
   }
@@ -58,7 +58,7 @@ class LoginScreen extends Component {
       }
     }
   };
-
+  
   render() {
     const { loginLoading, loginMessage } = this.props;
     if (loginMessage && loginLoading.accessToken) {

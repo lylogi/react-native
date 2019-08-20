@@ -30,19 +30,21 @@ class LoginComponent extends Component {
                 source={Assets.Images.logoConic}
                 />
             </View>
-            <View style={{flex:5}}>
+            <View style={{flex:5, alignContent:"flex-start", flexWrap:'wrap'}}>
                 <IconTextInput
                 icon="user"
                 placeholder="Email Address"
                 colorIcon={Color.primaryColor}
                 onChangeText={onEmailChange}
                 />
+                <BR/>
                 <IconTextInput
                 icon="lock"
                 placeholder="Password"
                 colorIcon={Color.primaryColor}
                 onChangeText={onPasswordChange}
                 />
+                <BR/>
                 <TextButton
                 onPress={() => {
                 }}
@@ -56,6 +58,7 @@ class LoginComponent extends Component {
                 disabled={false}
                 loading={loading}
                 onPress={onLoginSubmit}
+                style={text={padding: 5, fontZize: 10}}
                 />
             </View>
             <View style={{flex:1, alignItems:'center', justifyContent:'center', flexDirection: 'row'}}>

@@ -14,7 +14,7 @@ import TextButton from '../base_components/TextButton';
 class SignupComponent extends Component {
     render() {
         const {
-          loading, onLoginSubmit, onEmailChange, onPasswordChange, loginError, disableSignUp,
+          loading, onSignupSubmit, onEmailChange, onPasswordChange, loginError, disableSignUp,
         } = this.props;
     
         return (
@@ -58,7 +58,7 @@ class SignupComponent extends Component {
                 title="Sign Up"
                 disabled={disableSignUp}
                 loading={loading}
-                onPress={onLoginSubmit}
+                onPress={onSignupSubmit}
               />
               <BR size={20} />
             </View>
